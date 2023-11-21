@@ -59,6 +59,8 @@ CREATE TABLE "dept_manager" (
      )
 );
 
+--foreign keys added here to create relationships between tables for analysis 
+
 ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title_id" FOREIGN KEY("emp_title_id")
 REFERENCES "titles" ("title_id");
 
@@ -77,7 +79,7 @@ REFERENCES "departments" ("dept_no");
 
 
 
---import CSV's in the following order: titles, employees, salaries, dept_emp, departments, dept_manager
+--imported CSV's in the following order: titles, employees, salaries, dept_emp, departments, dept_manager
 --determined this was based on my ERD connections, starting with minimal connections to larger and more complex connections
 
 --checking my CSV imports and that all columns and data is correct
@@ -115,7 +117,8 @@ FROM employees e;
 
 
 SELECT e.first_name, e.last_name, EXTRACT(YEAR FROM hire_date) AS HIRE_DATE_YEAR
-FROM employees e;
+FROM employees e
+WHERE EXTRACT(YEAR FROM hire_date) = '1986';
 
 
 --List the manager of each department along with their department number, department name, employee number, last name, and first name.
